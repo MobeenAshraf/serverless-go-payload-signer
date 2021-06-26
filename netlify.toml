@@ -3,7 +3,7 @@
   functions = "functions"
 [build.environment]
   # Change this path with the path to your repository
-  GO_IMPORT_PATH = "github.com/netlify/aws-lambda-go-example"
+  GO_IMPORT_PATH = "github.com/MobeenAshraf/serverless-go"
 [[redirects]]
   from = "/"
   to = "/.netlify/functions/serverless-go"
