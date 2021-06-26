@@ -21,7 +21,7 @@ Curl requests isnt working due to rewrite-rule but things work on POSTMAN:
 
 ```
 curl -X POST \
-  http://serverlessgo.mobeenashraf.com/ \
+  http://serverlessgo.mobeenashraf.com/.netlify/functions/payload-signer \
   -H 'cache-control: no-cache' \
   -H 'content-type: application/json' \
   -d '{

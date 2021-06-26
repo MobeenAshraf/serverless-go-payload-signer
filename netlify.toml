@@ -6,6 +6,6 @@
   GO_IMPORT_PATH = "github.com/MobeenAshraf/serverless-go"
 [[redirects]]
   from = "/"
-  to = "/.netlify/functions/serverless-go"
+  to = "/.netlify/functions/payload-signer"
   status = 200
   force = true
