@@ -18,6 +18,7 @@ type Result struct {
 	SenderAddress  string
 	SigType        string
 	PayloadSigType string
+	KeyCurveType   string
 }
 
 func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
@@ -28,6 +29,7 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	signingMessage := result.SigningMessage
 	privKeyHex := result.PrivKeyHex
 	senderAddress := result.SenderAddress
+	keyCurveType := result.KeyCurveType
 
 	if result.PayloadSigType == "" {
 		result.PayloadSigType = "ecdsa_recovery"
@@ -39,10 +41,11 @@ func handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	var (
 		payloadSigType types.SignatureType = types.SignatureType(result.PayloadSigType)
 		sigType        types.SignatureType = types.SignatureType(result.SigType)
+		keyCurveType   types.CurveType = types.CurveType(result.keyCurveType)
 	)
 
 	signingPayloadHexDecoded, _ := hex.DecodeString(signingMessage)
-	keyPair, err := keys.ImportPrivateKey(privKeyHex, types.Secp256k1)
+	keyPair, err := keys.ImportPrivateKey(privKeyHex, keyCurveType)
 	if err != nil {
 		return returnErr(err)
 	}
